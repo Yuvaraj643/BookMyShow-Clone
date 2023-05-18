@@ -8,9 +8,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['sans-serif','Roboto',],
+      },
       colors: {
         navCol: {
           50: "#2E3147",
+        },
+        SignIn :{
+          50: "#f84464",
         },
       },
     },
