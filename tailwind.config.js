@@ -14,6 +14,7 @@ module.exports = {
       colors: {
         navCol: {
           50: "#2E3147",
+          200: "#2B3148",
         },
         SignIn :{
           50: "#f84464",

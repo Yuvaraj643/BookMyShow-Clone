@@ -7,7 +7,7 @@ const EntertainmentCard = (props) => {
       <div className="w-full h-30 px-2">
         <img
           src={props.src}
-          alt="Entertainment Image"
+          alt="EntertainmentImage"
           className="w-full h-full rounded-xl"
         />
       </div>
