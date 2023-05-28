@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import EntertainmentCardSlider from "../components/Entertainment/EntertainmentCard";
 import PosterSlider from "../components/PosterSlider/PosterSlider";
 import axios from "axios";
-import { Link } from "react-router-dom";
 const HomePage = () => {
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
@@ -59,15 +58,11 @@ const HomePage = () => {
     <>
       <div className="flex flex-col gap-10">
         <div className="gap-10 px-auto w-5/6 mx-auto">
-          {/* {popularMovies.map((movie) => (
-            <Link to={`/movie/${movie.id}`}> */}
-              <PosterSlider
-                images={popularMovies}
-                title="Outdoor Events"
-                isDark={false}
-              />
-            {/* </Link>
-          ))} */}
+          <PosterSlider
+            images={popularMovies}
+            title="Outdoor Events"
+            isDark={false}
+          />
         </div>
         <div className="gap-10 px-auto w-5/6 mx-auto">
           <img

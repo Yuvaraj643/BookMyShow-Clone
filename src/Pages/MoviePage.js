@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MovieHero from "../components/MovieHero/MovieHero";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 const Movie = () => {
+  const { id } = useParams();
+  const [movieDetails, setMovieDetails] = useState(null);
+
+  useEffect(() => {
+    const requestmovieDetails = async () => {
+      const getPopularMovies = await axios.get(`/movie/${id}`);
+      setMovieDetails(getPopularMovies.data);
+    };
+    requestmovieDetails();
+  }, []);
+  console.log(movieDetails);
+
+  const movie = movieDetails;
+  console.log(movie);
+
+  if (!movieDetails) {
+    return null;
+  }
   return (
     <>
       <MovieHero />
@@ -8,8 +29,7 @@ const Movie = () => {
         <div className="flex flex-col items-start gap-3">
           <h2 className="text-gray-800 font-bold text-2xl">About the Movie</h2>
           <p>
-            Dom Toretto and his family must confront a terrifying new enemy
-            who`s fueled by revenge
+            {movie.overview}
           </p>
         </div>
         <div className="my-8">
