@@ -15,7 +15,6 @@ const MovieHero = () => {
           alt="movieposter"
         />
       </div>
-
       <div className="relative hidden lg:block" style={{ height: "33rem" }}>
         <div
           className="absolute h-full w-full z-10"
@@ -30,6 +29,13 @@ const MovieHero = () => {
               alt="movieposter"
               className="w-full h-full rounded-xl"
             />
+          </div>
+          <div className="absolute z-40 top-10 left-72 pl-28 text-white">
+            <div className="text-4xl font-bold">Fast X</div>
+            <div></div>
+            <div className="mt-5">English </div>
+            <div className="py-2 mt-3">1h 41m • Action , Crime , Thriller • 18+ • 14 Nov, 2014</div>
+            <button className="bg-SignIn-50 py-3 px-16 rounded lg mt-7">Book Tickets</button>
           </div>
         </div>
         <img
