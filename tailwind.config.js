@@ -19,6 +19,10 @@ module.exports = {
         SignIn :{
           50: "#f84464",
         },
+        Rating :{
+          50 : "#333333",
+          100 : "#ffffff"
+        },
       },
     },
   },
