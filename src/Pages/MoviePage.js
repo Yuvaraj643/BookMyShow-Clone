@@ -25,12 +25,11 @@ const Movie = () => {
   return (
     <>
       <MovieHero />
-      <div className="my-12 container px-4 lg:w-1/2 lg:ml-64">
-        <div className="flex flex-col items-start gap-3">
+      <div className="my-3 container px-4 lg:w-1/2 lg:ml-64">
+        <div className="flex flex-col items-start gap-2">
+          
           <h2 className="text-gray-800 font-bold text-2xl">About the Movie</h2>
-          <p>
-            {movie.overview}
-          </p>
+          <p>{movie.overview}</p>
         </div>
         <div className="my-8">
           <hr />

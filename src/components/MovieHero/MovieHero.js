@@ -7,14 +7,23 @@ import axios from "axios";
 const MovieHero = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  const [languages, setLanguages] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    const requestmovieDetails = async () => {
-      const getPopularMovies = await axios.get(`/movie/${id}`);
-      setMovieDetails(getPopularMovies.data);
+    const requestMovieDetails = async () => {
+      try {
+        const response = await axios.get(`/movie/${id}`);
+        const movieData = response.data;
+        setMovieDetails(movieData);
+        setLanguages(movieData.spoken_languages);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    requestmovieDetails();
-  }, []);
+
+    requestMovieDetails();
+  }, [id]);
   console.log(movieDetails);
 
   const movie = movieDetails;
@@ -23,6 +32,11 @@ const MovieHero = () => {
   if (!movieDetails) {
     return null;
   }
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
+
+  const displayLanguages = showAll ? languages : languages.slice(0, 2);
 
   return (
     <>
@@ -32,6 +46,61 @@ const MovieHero = () => {
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
             alt="movieposter"
           />
+          <div className="my-3 container px-4 lg:w-1/2 lg:ml-64">
+            <div className="flex flex-col items-start gap-2"></div>
+            <div className="flex">
+              <BsFillStarFill className="w-5 h-8" />
+              <span className="px-1 text-lg flex items-center">
+                {" "}
+                {movie.vote_average}/10{" "}
+              </span>
+              <span className="flex py-1 px-2">
+                <span className="">
+                  {movie.vote_count >= 1000
+                    ? `${(movie.vote_count / 1000).toFixed(1)}k votes`
+                    : `${movie.vote_count} votes`}
+                </span>{" "}
+                <IoIosArrowForward className="w-4 h-4 mt-1" />
+              </span>
+            </div>
+            <div className="flex justify-between rounded-lg bg-Rating-200 px-2 w-full">
+              <div className="px-2 py-2 ">
+                <span className="text-lg font-bold text-gray-700">
+                  Add your Rating and Review
+                </span>
+                <br></br>
+                <span className="text-sm text-gray-500">
+                  Your ratings Matter
+                </span>
+              </div>
+              <div>
+                <button className=" border-2 border-red-400 py-1 px-2 mt-3 rounded-lg  text-red-400 font-bold">
+                  Rate now
+                </button>
+              </div>
+            </div>
+            <div className="mt-5 bg-gray-100 px-2 py-1 font-bold">
+              {displayLanguages.map((language, index) => (
+                <span key={language.iso_639_1}>
+                  {language.english_name}
+                  {index !== displayLanguages.length - 1 && ", "}
+                </span>
+              ))}
+              {languages.length > 2 && (
+                <span className="clickable" onClick={toggleShowAll}>
+                  {showAll ? "-" : "+"}
+                </span>
+              )}
+            </div>
+
+            <div className="py-2 mt-3">
+              {movie.genres
+                .map((genre) => <span key={genre.id}>{genre.name}</span>)
+                .reduce((prev, curr) => [prev, ", ", curr])}
+              • {movie.adult ? "18+" : "PG"}
+              <br></br> • {movie.release_date}
+            </div>
+          </div>
         </div>
         <div className="hidden md:block lg:hidden">
           <img
@@ -63,7 +132,11 @@ const MovieHero = () => {
                   {movie.vote_average}/10{" "}
                 </span>
                 <span className="flex py-1 px-2">
-                  <span className="">{movie.vote_count} votes</span>{" "}
+                  <span className="">
+                    {movie.vote_count >= 1000
+                      ? `${(movie.vote_count / 1000).toFixed(1)}k votes`
+                      : `${movie.vote_count} votes`}
+                  </span>{" "}
                   <IoIosArrowForward className="w-4 h-4 mt-1" />
                 </span>
               </div>
@@ -82,13 +155,17 @@ const MovieHero = () => {
                 </div>
               </div>
               <div className="mt-5">
-                {movie.spoken_languages
-                  .map((language) => (
-                    <span key={language.iso_639_1}>
-                      {language.english_name}
-                    </span>
-                  ))
-                  .reduce((prev, curr) => [prev, ", ", curr])}
+                {displayLanguages.map((language, index) => (
+                  <span key={language.iso_639_1}>
+                    {language.english_name}
+                    {index !== displayLanguages.length - 1 && ", "}
+                  </span>
+                ))}
+                {languages.length > 2 && (
+                  <span className="clickable" onClick={toggleShowAll}>
+                    {showAll ? "-" : "+"}
+                  </span>
+                )}
               </div>
 
               <div className="py-2 mt-3">

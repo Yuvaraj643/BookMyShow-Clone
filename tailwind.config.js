@@ -21,7 +21,11 @@ module.exports = {
         },
         Rating :{
           50 : "#333333",
-          100 : "#ffffff"
+          100 : "#ffffff",
+          200 : "#f2f5f9",
+        },
+        Button : {
+          50 : "#f84464",
         },
       },
     },

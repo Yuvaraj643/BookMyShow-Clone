@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 //Component
 import { NextArrow, PrevArrow } from "./Arrows";
+import { Link } from "react-router-dom";
 
 const HeroCarousal = () => {
   const [images, setImages] = useState([]);
@@ -45,13 +46,15 @@ const HeroCarousal = () => {
       <div className="lg:hidden">
         <HeroSlider {...settings}>
           {images.map((image) => (
-            <div className="w-full h-64 md:h-80 py-3">
-              <img
-                src={`https://image.tmdb.org/t/p/original/${image.backdrop_path}`}
-                alt="testing"
-                className="w-full h-full rounded-md"
-              />
-            </div>
+            <Link to={`/movie/${image.id}`} key={image.id}>
+              <div className="w-full h-64 md:h-80 py-3">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${image.backdrop_path}`}
+                  alt="testing"
+                  className="w-full h-full rounded-md"
+                />
+              </div>
+            </Link>
           ))}
         </HeroSlider>
       </div>
@@ -59,13 +62,15 @@ const HeroCarousal = () => {
       <div className="hidden lg:block">
         <HeroSlider {...settingsLg}>
           {images.map((image) => (
-            <div className="w-full h-96 px-2 py-3">
-              <img
-                src={`https://image.tmdb.org/t/p/original/${image.backdrop_path}`}
-                alt="testing"
-                className="w-full h-full rounded-md"
-              />
-            </div>
+            <Link to={`/movie/${image.id}`} key={image.id}>
+              <div className="w-full h-96 px-2 py-3">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${image.backdrop_path}`}
+                  alt="testing"
+                  className="w-full h-full rounded-md"
+                />
+              </div>
+            </Link>
           ))}
         </HeroSlider>
       </div>
