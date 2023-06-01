@@ -73,7 +73,7 @@ const Movie = () => {
           </div>
         </div>
         <div>
-          <CastSlider title="Cast" subtitle="Main Cast" cast={cast} crew={crew} isDark={false} />
+          <CastSlider title="Cast" subtitle="Main cast" cast={cast} crew={crew} isDark={false} />
         </div>
       </div>
     </>
