@@ -3,12 +3,23 @@ import MovieHero from "../components/MovieHero/MovieHero";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CastSlider from "../components/Cast/CastSlider";
+import PosterSlider from "../components/PosterSlider/PosterSlider";
 
 const Movie = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
+  const [upcommingMovies, setUpcommingMovies] = useState([]);
+
+  useEffect(() => {
+    const requestUpcommingMovies = async () => {
+      const getUpcommingMovies = await axios.get(`/movie/${id}/recommendations`);
+      setUpcommingMovies(getUpcommingMovies.data.results);
+    };
+    requestUpcommingMovies();
+  }, [id]);
+  console.log(upcommingMovies);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -27,13 +38,12 @@ const Movie = () => {
           member.department === "Art" ||
           member.department === "Visual Effects"
       );
-  
+
       const crewWithProfile = filteredCrew
         .filter((member) => member.profile_path)
         .slice(0, 10);
-  
+
       setCrew(crewWithProfile);
-  
     };
     fetchMovieDetails();
   }, [id]);
@@ -73,8 +83,21 @@ const Movie = () => {
           </div>
         </div>
         <div>
-          <CastSlider title="Cast" subtitle="Main cast" cast={cast} crew={crew} isDark={false} />
+          <CastSlider
+            title="Cast"
+            subtitle="Main cast"
+            cast={cast}
+            crew={crew}
+            isDark={false}
+          />
         </div>
+      </div>
+      <div className="gap-10 px-auto w-5/6 mx-auto">
+        <PosterSlider
+          images={upcommingMovies}
+          title="Recommended Movies"
+          isDark={false}
+        />
       </div>
     </>
   );
