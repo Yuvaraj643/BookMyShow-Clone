@@ -82,7 +82,7 @@ const Movie = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="w-full">
           <CastSlider
             title="Cast"
             subtitle="Main cast"
