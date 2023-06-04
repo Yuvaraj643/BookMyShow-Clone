@@ -2,6 +2,9 @@ import React from "react";
 import Poster from "../Poster/Poster";
 import settings from "../../config/PosterCarousalConfig";
 import Slider from "react-slick";
+
+
+
 const PosterSlider = (props) => {
   return (
     <>
