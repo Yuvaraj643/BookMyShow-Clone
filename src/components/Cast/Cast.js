@@ -12,8 +12,8 @@ const Cast = ({ actor }) => {
       </div>
 
       <h3 className="text-center font-bold text-sm p-1">{actor.name}</h3>
-      <div className="flex text-center">
-        <span className="text-sm">as</span>
+      <div className="flex">
+        <span className="text-sm">as &nbsp;</span>
         <p className="text-sm w-full">{actor.character}</p>
       </div>
     </div>
