@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsChevronRight } from "react-icons/bs";
 import {
   AiOutlineSearch,
   AiOutlineCaretDown,
   AiOutlineMenu,
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const NavSm = () => {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    navigate(`/movies?search=${searchQuery}`);
+  };
   return (
     <>
       <div className="text-white flex items-center justify-between">
@@ -16,8 +23,8 @@ const NavSm = () => {
             Bhubaneswar <BsChevronRight />
           </span>
         </div>
-        <div className="w-7 h-7">
-          <AiOutlineSearch className="w-full h-full" />
+        <div className="w-7 h-7" onClick={handleSearch}>
+          <AiOutlineSearch className="w-full h-full"  />
         </div>
       </div>
     </>
@@ -25,6 +32,12 @@ const NavSm = () => {
 };
 
 const NavMd = () => {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    navigate(`/movies?search=${searchQuery}`);
+  };
   return (
     <div className="w-full flex items-center bg-white gap-3 px-3 py-2 rounded-sm">
       <AiOutlineSearch />
@@ -32,12 +45,19 @@ const NavMd = () => {
         type="search"
         placeholder="Search for Movies,Events,Plays,Sports and Activities"
         className="w-full focus:outline-none"
+        onClick={handleSearch}
       />
     </div>
   );
 };
 
 const NavLg = () => {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    navigate(`/`);
+  };
   return (
     <>
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -70,6 +90,7 @@ const NavLg = () => {
               type="search"
               placeholder="Search for Movies,Events,Plays,Sports and Activities"
               className="w-full focus:outline-none"
+              onClick={handleSearch}
             />
           </div>
         </div>
