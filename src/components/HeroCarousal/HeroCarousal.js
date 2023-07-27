@@ -59,7 +59,7 @@ const HeroCarousal = () => {
         </HeroSlider>
       </div>
 
-      <div className="hidden lg:block">
+      <div className="hidden lg:block relative">
         <HeroSlider {...settingsLg}>
           {images.map((image) => (
             <Link to={`/movie/${image.id}`} key={image.id}>

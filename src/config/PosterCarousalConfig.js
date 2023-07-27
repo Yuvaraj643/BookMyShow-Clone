@@ -8,7 +8,7 @@ const NextArrow = ({ onClick, direction }) => (
     <button
       className={`slider-arrow ${direction} absolute top-44 right-0  transform -translate-y-1/2 right-2 focus:outline-none p-2 rounded-full`}
       onClick={onClick}
-      style={{ backgroundColor: "rgb(153, 153, 153)" }}
+      style={{ backgroundColor: "rgb(227, 205, 205)" }}
     >
       <FontAwesomeIcon icon={faChevronRight} className="text-gray-500" />
     </button>
@@ -18,7 +18,7 @@ const NextArrow = ({ onClick, direction }) => (
     <button
       className={`slider-arrow ${direction} absolute top-44 left-0 mr-4 transform -translate-y-1/2 left-2 focus:outline-none p-2 rounded-full z-10`}
       onClick={onClick}
-      style={{ backgroundColor: "rgb(153, 153, 153)" }}
+      style={{ backgroundColor: "rgb(227, 205, 205)" }}
     >
       <FontAwesomeIcon icon={faChevronLeft} className="text-gray-500" />
     </button>
